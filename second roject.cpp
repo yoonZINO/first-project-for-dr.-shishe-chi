@@ -8,7 +8,7 @@ vector<int> ArryNumber;   // store digits as numbers
 vector<char> Arraysymbol; // store operators as chars
 string Phrase;
 char c; 
-void TakeInput() {
+void TakeInfix() {
     cout << "Enter phrase (infix)(with out space): ";
     cin >> Phrase;
     for (int i = 0; i < Phrase.size(); i++) {
@@ -70,7 +70,7 @@ void InfixToPrefix() {
 
 
 int main() {
-    TakeInput();
+    TakeInfix();
     InfixToPostfix();
     InfixToPrefix();
 }
