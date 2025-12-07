@@ -8,7 +8,7 @@ vector<int> ArryNumber;   // store digits as numbers
 vector<char> Arraysymbol; // store operators as chars
 string Phrase;
 char c; 
-void TakeInfix() {
+void TakeInputAsInfix() {
     cout << "Enter phrase (infix)(with out space): ";
     cin >> Phrase;
     for (int i = 0; i < Phrase.size(); i++) {
@@ -46,31 +46,33 @@ void InfixToPostfix() {
 
 
 void InfixToPrefix() {
-    vector<string> ArryNumber; 
-    char b;
-    string a[2];
+    cout << endl;
     string new_element_stack;
-    for (int i = 0; i < Phrase.size(); i++) {
-        if (!Arraysymbol.empty() && ArryNumber.size() >= 2) {
-            char c = Phrase[i];
-            if (c == ')') {
-                b = Arraysymbol.back();
-                Arraysymbol.pop_back();
-                for (int j = 0; j < 2; j++) { //to get tow numbers
-                    a[j] = ArryNumber.back();
-                    ArryNumber.pop_back();
-                }
-                new_element_stack = string(1, b) + a[1] + a[0]; //b is char abd need to cinvert to str, that 1 is lengh of str, means b which converted to str is only one character
-                ArryNumber.push_back(new_element_stack); //append to Arrynumber
-            }
-        }   
-    cout << "prefix: "<< ArryNumber.back();
+    vector<string> NewArraynumber;   // numbers as strings
+    char symbol;
+    string a[2];
+    for (int x : ArryNumber) {
+        NewArraynumber.push_back(to_string(x));
     }
-}
-
+    for (int i = 0 ; i<Phrase.size() ; i++) {
+        if (c == ')') {
+            symbol = Arraysymbol.back();
+            for (int j ; j<2 ; j++) {
+                a[j] = NewArraynumber.back();
+            }
+            new_element_stack = string(1, symbol) + a[0] + a[1];
+            Arraysymbol.pop_back();
+            NewArraynumber.pop_back();
+            NewArraynumber.pop_back();
+        }
+        if (NewArraynumber.empty() == true) {
+            cout << "prefix: "<< new_element_stack;
+        }
+    }
+}    
 
 int main() {
-    TakeInfix();
+    TakeInputAsInfix();
     InfixToPostfix();
     InfixToPrefix();
 }
